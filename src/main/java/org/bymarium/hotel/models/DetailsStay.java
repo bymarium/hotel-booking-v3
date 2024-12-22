@@ -9,13 +9,14 @@ public class DetailsStay extends Details {
     private Integer roomsQuantity;
 
     public DetailsStay(
-        LocalDate startDate,
-        LocalDate endDate,
-        Integer adultsQuantity,
-        Integer childrenQuantity,
-        Integer roomsQuantity
+      LocalDate startDate,
+      LocalDate endDate,
+      Integer adultsQuantity,
+      Integer childrenQuantity,
+      Integer roomsQuantity,
+      Float totalPrice
     ) {
-        super(startDate, childrenQuantity, adultsQuantity);
+        super(startDate, childrenQuantity, adultsQuantity, totalPrice);
         this.endDate = endDate;
         this.roomsQuantity = roomsQuantity;
     }
@@ -31,7 +32,8 @@ public class DetailsStay extends Details {
           "Fecha de fin: " + getEndDate() + "\n" +
           "Niños: " + getChildrenQuantity() + "\n" +
           "Adultos: " + getAdultsQuantity() + "\n" +
-          "Habitaciones: " + getRoomsQuantity() + "\n";
+          "Habitaciones: " + getRoomsQuantity() + "\n"  +
+          "Precio total: " + getTotalPrice() + "\n";
     }
 
     public LocalDate getEndDate() {

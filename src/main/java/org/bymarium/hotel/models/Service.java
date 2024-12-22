@@ -11,6 +11,11 @@ public class Service {
     this.quantity = quantity;
   }
 
+  public Service(String name, String description) {
+    this.name = name;
+    this.description = description;
+  }
+
   public Service() {
   }
 
