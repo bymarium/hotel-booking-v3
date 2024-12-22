@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
 
-public class ValidatorService {
+public class Validator {
   private final Scanner scanner;
 
-  public ValidatorService(Scanner scanner) {
+  public Validator(Scanner scanner) {
     this.scanner = scanner;
   }
 
@@ -16,7 +16,7 @@ public class ValidatorService {
     return scanner.nextLine();
   }
 
-  public Integer readInt(String message) {
+  public Integer readInteger(String message) {
     int input;
     try {
       System.out.println(message);
@@ -24,7 +24,7 @@ public class ValidatorService {
       return input;
     } catch (NumberFormatException e) {
       System.err.println("Entrada inválida. Por favor ingrese un número entero.");
-      return readInt(message);
+      return readInteger(message);
     }
   }
 
@@ -33,6 +33,30 @@ public class ValidatorService {
     try {
       System.out.println(message);
       date = LocalDate.parse(scanner.nextLine());
+
+      if (date.isBefore(LocalDate.now())) {
+        System.out.println("La fecha de inicio no puede ser anterior a la fecha actual. Inténtelo nuevamente.");
+        return readLocalDate(message);
+      }
+
+      return date;
+    } catch (Exception e) {
+      System.err.println("Fecha inválida. El formato debe ser: yyyy-MM-dd");
+      return readLocalDate(message);
+    }
+  }
+
+  public LocalDate readLocalDate(String message, LocalDate startDate) {
+    LocalDate date;
+    try {
+      System.out.println(message);
+      date = LocalDate.parse(scanner.nextLine());
+
+      if (date.isBefore(startDate)) {
+        System.out.println("La fecha de inicio no puede ser anterior a la fecha actual. Inténtelo nuevamente.");
+        return readLocalDate(message);
+      }
+
       return date;
     } catch (Exception e) {
       System.err.println("Fecha inválida. El formato debe ser: yyyy-MM-dd");

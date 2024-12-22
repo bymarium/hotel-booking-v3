@@ -5,6 +5,7 @@ import org.bymarium.hotel.constants.AccommodationType;
 import java.util.List;
 
 public abstract class Accommodation {
+  public static Object AccommodationType;
   private String name;
   private Float rate;
   private String city;
@@ -12,7 +13,7 @@ public abstract class Accommodation {
   private AccommodationType type;
   private List<Service> services;
 
-  public Accommodation(String name, Float rate, String city, String description, AccommodationType type, List<Service> services) {
+  protected Accommodation(String name, Float rate, String city, String description, AccommodationType type, List<Service> services) {
     this.name = name;
     this.rate = rate;
     this.city = city;
@@ -21,7 +22,7 @@ public abstract class Accommodation {
     this.services = services;
   }
 
-  public Accommodation() {
+  protected Accommodation() {
   }
 
   public String getName() {

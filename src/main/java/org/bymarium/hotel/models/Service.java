@@ -3,13 +3,6 @@ package org.bymarium.hotel.models;
 public class Service {
   private String name;
   private String description;
-  private Integer quantity;
-
-  public Service(String name, String description, Integer quantity) {
-    this.name = name;
-    this.description = description;
-    this.quantity = quantity;
-  }
 
   public Service(String name, String description) {
     this.name = name;
@@ -21,8 +14,7 @@ public class Service {
 
   public String printService() {
     return "Nombre: " + name + "\n" +
-      "Descripción: " + description + "\n" +
-      "Cantidad: " + quantity + "\n";
+      "Descripción: " + description + "\n";
   }
 
   public String getName() {
@@ -31,9 +23,5 @@ public class Service {
 
   public String getDescription() {
     return description;
-  }
-
-  public Integer getQuantity() {
-    return quantity;
   }
 }

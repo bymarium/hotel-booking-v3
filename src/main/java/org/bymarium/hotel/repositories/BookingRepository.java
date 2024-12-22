@@ -39,6 +39,10 @@ public class BookingRepository {
     bookings.add(booking);
   }
 
+  public void removeBooking(Booking booking) {
+    bookings.remove(booking);
+  }
+
   private void initialize() {
     bookings = Arrays.asList(
       new Booking(
@@ -49,8 +53,8 @@ public class BookingRepository {
           "Hotel moderno cerca del Parque Lleras",
           AccommodationType.HOTEL,
           Arrays.asList(
-            new Room("Suite", "Suite lujosa con vista a la ciudad, incluye minibar, cama king, baño privado y Wi-Fi de alta velocidad.", 1,8, "Suite", 250.0f),
-            new Room("Doble", "Habitación doble con decoración moderna, dos camas individuales, escritorio y aire acondicionado.", 1,10, "Doble", 180.0f)
+            new Room("Suite", "Suite lujosa con vista a la ciudad, incluye minibar, cama king, baño privado y Wi-Fi de alta velocidad.",8, "Suite", 250.0f),
+            new Room("Doble", "Habitación doble con decoración moderna, dos camas individuales, escritorio y aire acondicionado.",10, "Doble", 180.0f)
           ),
           250.0f
         ),
@@ -65,8 +69,8 @@ public class BookingRepository {
           "Hermoso hotel campestre rodeado de naturaleza",
           AccommodationType.APARTMENT,
           Arrays.asList(
-            new Room("Familiar", "Habitación espaciosa con dos camas dobles y zona de juegos.", 2,6, "Familiar", 300.0f),
-            new Room("Individual", "Habitación individual económica con cama sencilla, Wi-Fi y baño privado.", 1, 6, "Individual", 120.0f)
+            new Room("Familiar", "Habitación espaciosa con dos camas dobles y zona de juegos.",6, "Familiar", 300.0f),
+            new Room("Individual", "Habitación individual económica con cama sencilla, Wi-Fi y baño privado.", 6, "Individual", 120.0f)
           ),
           300.0f
         ),
@@ -81,8 +85,8 @@ public class BookingRepository {
           "Hostal acogedor con vistas panorámicas a las montañas",
           AccommodationType.FARM,
           Arrays.asList(
-            new Room("Deluxe", "Habitación exclusiva con jacuzzi, cama king, minibar, balcón privado y desayuno incluido.", 2, 3, "Deluxe", 400.0f),
-            new Room("Suite", "Suite lujosa con vista a la ciudad, incluye minibar, cama king, baño privado y Wi-Fi de alta velocidad.", 3, 8, "Suite", 250.0f)
+            new Room("Deluxe", "Habitación exclusiva con jacuzzi, cama king, minibar, balcón privado y desayuno incluido.", 3, "Deluxe", 400.0f),
+            new Room("Suite", "Suite lujosa con vista a la ciudad, incluye minibar, cama king, baño privado y Wi-Fi de alta velocidad.", 8, "Suite", 250.0f)
           ),
           400.0f
         ),

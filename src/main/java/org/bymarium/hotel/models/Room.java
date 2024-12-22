@@ -5,13 +5,6 @@ public class Room extends Service {
   private String type;
   private Float price;
 
-  public Room(String name, String description, Integer quantity, Integer stock, String type, Float price) {
-    super(name, description, quantity);
-    this.stock = stock;
-    this.type = type;
-    this.price = price;
-  }
-
   public Room(String name, String description, Integer stock, String type, Float price) {
     super(name, description);
     this.stock = stock;
