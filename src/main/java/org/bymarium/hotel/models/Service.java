@@ -1,12 +1,16 @@
 package org.bymarium.hotel.models;
 
+import java.util.UUID;
+
 public class Service {
   private String name;
   private String description;
+  private String id;
 
   public Service(String name, String description) {
     this.name = name;
     this.description = description;
+    this.id = UUID.randomUUID().toString();
   }
 
   public Service() {
@@ -23,5 +27,9 @@ public class Service {
 
   public String getDescription() {
     return description;
+  }
+
+  public String getId() {
+    return id;
   }
 }

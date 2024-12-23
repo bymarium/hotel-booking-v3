@@ -1,7 +1,5 @@
 package org.bymarium.hotel.models;
 
-import org.bymarium.hotel.constants.AccommodationType;
-
 import java.time.LocalDate;
 
 public class Details {

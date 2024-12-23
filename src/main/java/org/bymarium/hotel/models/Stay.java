@@ -21,7 +21,7 @@ public class Stay extends Accommodation {
     String result = "\n********** ALOJAMIENTO **********\n";
 
     result += "Ciudad: " + getCity() + "\n";
-    result += "Tipo de alojamiento: " + getType() + "\n";
+    result += "Tipo de alojamiento: " + getType().getSpanishName() + "\n";
     result += "Nombre: " + getName() + "\n";
     result += "Descripción: " + getDescription() + "\n";
     result += "Calificación: " + getRate() + "\n";

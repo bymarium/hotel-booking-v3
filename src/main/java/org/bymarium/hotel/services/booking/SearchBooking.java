@@ -25,7 +25,7 @@ public class SearchBooking implements ICommand<Booking> {
 
     bookings = getBookingsByEmail(email);
 
-    Integer option = validator.readInteger("Ingrese el número de la reserva que desea seleccionar: \n" + getFormattedBooking());
+    Integer option = validator.readInteger("☆ ☆ ☆ LISTADO DE RESERVAS ☆ ☆ ☆" + getFormattedBooking() + "\nIngrese el número de la reserva que desea seleccionar: ");
 
     if (!isValidBooking(option)) {
       System.out.println("Opción no válida. Inténtalo nuevamente.");
@@ -40,10 +40,10 @@ public class SearchBooking implements ICommand<Booking> {
   }
 
   private String getFormattedBooking() {
-    return this.bookings.stream().map(booking -> (bookings.lastIndexOf(booking) + 1) + ". " + booking).collect(Collectors.joining("\n"));
+    return this.bookings.stream().map(booking -> "\n☆ RESERVA # " +(bookings.lastIndexOf(booking) + 1) + " ☆\n" + booking.printBooking()).collect(Collectors.joining("\n"));
   }
 
   private boolean isValidBooking(Integer option) {
-    return option > bookings.size() || option < MINIMUM_OPTION;
+    return option <= bookings.size() && option >= MINIMUM_OPTION;
   }
 }

@@ -6,15 +6,12 @@ import org.bymarium.hotel.models.Booking;
 import org.bymarium.hotel.models.Room;
 import org.bymarium.hotel.services.interfaces.ICommand;
 import org.bymarium.hotel.services.room.SelectRoom;
-import org.bymarium.hotel.utils.Validator;
 
 public class UpdateBooking implements ICommand<Booking> {
-  private final Validator validator;
   private final SearchBooking searchBooking;
   private final SelectRoom selectRoom;
 
-  public UpdateBooking(Validator validator, SearchBooking searchBooking, SelectRoom selectRoom) {
-    this.validator = validator;
+  public UpdateBooking(SearchBooking searchBooking, SelectRoom selectRoom) {
     this.searchBooking = searchBooking;
     this.selectRoom = selectRoom;
   }
@@ -28,7 +25,7 @@ public class UpdateBooking implements ICommand<Booking> {
 
     if (accommodation.getType().equals(AccommodationType.HOTEL)) {
       Room oldRoom = selectRoom.execute(accommodation);
-      accommodation.getServices().remove(oldRoom);
+      accommodation.getServices().removeIf(room -> room.getId().equals(oldRoom.getId()));
       Room newRoom = selectRoom.execute(accommodation);
       accommodation.getServices().add(newRoom);
     }

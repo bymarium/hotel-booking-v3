@@ -24,8 +24,11 @@ public class SearchAccommodation implements ICommand<List<Accommodation>> {
 
   @Override
   public List<Accommodation> execute() {
-    String city = validator.readString("Ingrese la ciudad: \n" + getFormattedCity());
-    AccommodationType type = AccommodationType.getAccommodationTypeByName(validator.readString("Ingrese el tipo de alojamiento: \n" + getFormattedType()));
+    Integer optionCity = validator.readInteger("\nIngrese la ciudad: \n" + getFormattedCity());
+    String city = cities.get(optionCity - 1);
+
+    Integer optionType = validator.readInteger("\nIngrese el tipo de alojamiento: \n" + getFormattedType());
+    AccommodationType type = AccommodationType.values()[optionType - 1];
 
     return getAccommodationsByCityAndType(city, type);
   }

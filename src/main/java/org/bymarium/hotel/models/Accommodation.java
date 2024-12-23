@@ -5,7 +5,6 @@ import org.bymarium.hotel.constants.AccommodationType;
 import java.util.List;
 
 public abstract class Accommodation {
-  public static Object AccommodationType;
   private String name;
   private Float rate;
   private String city;

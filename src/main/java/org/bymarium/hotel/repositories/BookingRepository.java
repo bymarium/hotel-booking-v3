@@ -12,6 +12,7 @@ import org.bymarium.hotel.models.Stay;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,8 +45,8 @@ public class BookingRepository {
   }
 
   private void initialize() {
-    bookings = Arrays.asList(
-      new Booking(
+    bookings = new ArrayList<>();
+    bookings.add(new Booking(
         new Stay(
           "Hotel del Parque",
           4.7f,
@@ -60,8 +61,8 @@ public class BookingRepository {
         ),
         new Client("Juan", "Perez", "123456789", "Pereira", "juan.perez@gmail.com", LocalTime.of(10, 30)),
         new DetailsStay(LocalDate.of(2024, 12, 28), LocalDate.of(2024, 12, 28), 2, 1, 2, 250.0f)
-      ),
-      new Booking(
+      ));
+    bookings.add(new Booking(
         new Stay(
           "Hotel Campestre",
           4.2f,
@@ -76,8 +77,8 @@ public class BookingRepository {
         ),
         new Client("Juan", "Perez", "123456789", "Pereira", "juan.perez@gmail.com", LocalTime.of(12, 45)),
         new DetailsStay(LocalDate.of(2025, 1, 3), LocalDate.of(2025, 1, 10), 1, 3, 3, 400.0f)
-      ),
-      new Booking(
+      ));
+    bookings.add(new Booking(
         new Stay(
           "Hostal de la Montaña",
           4.5f,
@@ -92,8 +93,8 @@ public class BookingRepository {
         ),
         new Client("Maria", "Gomez", "987654321", "Manizales", "maria.gomez@gmail.com", LocalTime.of(14, 15)),
         new DetailsStay(LocalDate.of(2024, 12, 28), LocalDate.of(2024, 12, 30), 3, 2, 5, 300.0f)
-      ),
-      new Booking(
+      ));
+    bookings.add(new Booking(
         new DayPass(
           "Hostal de la Montaña",
           4.5f,
@@ -110,7 +111,6 @@ public class BookingRepository {
         ),
         new Client("Maria", "Gomez", "987654321", "Manizales", "maria.gomez@gmail.com", LocalTime.of(9, 0)),
         new Details(LocalDate.of(2024, 12, 30), 0, 1, 120.0f)
-      )
-    );
+      ));
   }
 }

@@ -7,6 +7,7 @@ import org.bymarium.hotel.models.Client;
 import org.bymarium.hotel.models.DayPass;
 import org.bymarium.hotel.models.Details;
 import org.bymarium.hotel.models.DetailsStay;
+import org.bymarium.hotel.models.Room;
 import org.bymarium.hotel.models.Stay;
 import org.bymarium.hotel.repositories.BookingRepository;
 import org.bymarium.hotel.services.accommodation.CreateDayPass;
@@ -24,13 +25,15 @@ public class CreateBooking implements ICommand<Booking> {
   private final CreateStay createStay;
   private final CreateDayPass createDayPass;
   private final BookingRepository bookingRepository;
+  private final CaculateTotalPrice caculateTotalPrice;
 
-  public CreateBooking(SelectAccommodation selectAccommodation, Validator validator, CreateStay createStay, CreateDayPass createDayPass, BookingRepository bookingRepository) {
+  public CreateBooking(SelectAccommodation selectAccommodation, Validator validator, CreateStay createStay, CreateDayPass createDayPass, BookingRepository bookingRepository, CaculateTotalPrice caculateTotalPrice) {
     this.selectAccommodation = selectAccommodation;
     this.validator = validator;
     this.createStay = createStay;
     this.createDayPass = createDayPass;
     this.bookingRepository = bookingRepository;
+    this.caculateTotalPrice = caculateTotalPrice;
   }
 
   @Override
@@ -57,11 +60,12 @@ public class CreateBooking implements ICommand<Booking> {
 
     Stay stay = createStay.execute(accommodation);
 
-    Client client = createClient();
-    // TODO: numero de habitaciones y total de precio
-    DetailsStay detailsStay = new DetailsStay(startDate, endDate, numberOfAdults, numberOfChildren, 0, 0.0f);
+    double totalPrice = stay.getServices().stream().map(Room.class::cast).mapToDouble(Room::getPrice).sum();
 
-    return new Booking(stay, client, detailsStay);
+    Client client = createClient();
+    DetailsStay detailsStay = new DetailsStay(startDate, endDate, numberOfAdults, numberOfChildren, stay.getServices().size(), (float) totalPrice);
+
+    return caculateTotalPrice.execute(new Booking(stay, client, detailsStay));
   }
 
   private Booking createBookingDayPass(Accommodation accommodation) {
@@ -71,7 +75,10 @@ public class CreateBooking implements ICommand<Booking> {
 
     DayPass dayPass = createDayPass.execute(accommodation);
     Client client = createClient();
-    Details details = new Details(startDate, numberOfChildren, numberOfAdults, 0.0f);
+
+    float totalPrice = dayPass.getPersonPrice() * (numberOfChildren + numberOfAdults);
+    Details details = new Details(startDate, numberOfChildren, numberOfAdults, totalPrice);
+
 
     return new Booking(dayPass, client, details);
   }

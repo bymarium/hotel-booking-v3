@@ -17,7 +17,7 @@ public class SelectRoom implements ICommandParameterized<Room, Accommodation> {
 
   @Override
   public Room execute(Accommodation accommodation) {
-    Integer option = validator.readInteger("Ingrese el número de la habitación que desea seleccionar: \n" + getFormattedRooms(accommodation));
+    Integer option = validator.readInteger("☆ ☆ ☆ LISTADO DE HABITACIONES ☆ ☆ ☆\n" + getFormattedRooms(accommodation) + "\nIngrese el número de la habitación que desea seleccionar:");
 
     if (!isValidRoom(option, getRooms(accommodation))) {
       System.out.println("Opción no válida. Inténtalo nuevamente.");
@@ -54,10 +54,10 @@ public class SelectRoom implements ICommandParameterized<Room, Accommodation> {
 
   private String getFormattedRooms(Accommodation accommodation) {
     List<Room> rooms = getRooms(accommodation);
-    return rooms.stream().map(room -> (rooms.lastIndexOf(room) + 1) + ". " + room.printRoom()).collect(Collectors.joining("\n"));
+  return rooms.stream().map(room -> "☆ HABITACIÓN #" + (rooms.lastIndexOf(room) + 1) + " ☆\n" + room.printRoom()).collect(Collectors.joining("\n"));
   }
 
   private boolean isValidRoom(Integer option, List<Room> rooms) {
-    return option > rooms.size() || option < 1;
+    return option <= rooms.size() && option >= 1;
   }
 }

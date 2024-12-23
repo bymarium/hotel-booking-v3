@@ -35,7 +35,7 @@ public class Validator {
       date = LocalDate.parse(scanner.nextLine());
 
       if (date.isBefore(LocalDate.now())) {
-        System.out.println("La fecha de inicio no puede ser anterior a la fecha actual. Inténtelo nuevamente.");
+        System.err.println("La fecha de inicio no puede ser anterior a la fecha actual. Inténtelo nuevamente.");
         return readLocalDate(message);
       }
 
@@ -53,7 +53,7 @@ public class Validator {
       date = LocalDate.parse(scanner.nextLine());
 
       if (date.isBefore(startDate)) {
-        System.out.println("La fecha de inicio no puede ser anterior a la fecha actual. Inténtelo nuevamente.");
+        System.err.println("La fecha de inicio no puede ser anterior a la fecha actual. Inténtelo nuevamente.");
         return readLocalDate(message);
       }
 

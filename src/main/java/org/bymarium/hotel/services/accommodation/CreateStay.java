@@ -38,14 +38,14 @@ public class CreateStay implements ICommandParameterized<Stay, Accommodation> {
   private List<Room> selectRooms(Accommodation accommodation) {
     List<Room> rooms = new ArrayList<>();
 
-    String response = validator.readString("¿Deseas seleccionar más habitaciones? (S/N): ");
+    String response = validator.readString("\n¿Deseas seleccionar habitaciones? (S/N): ");
     do {
-      if (response.equals("S")) {
+      if (response.equalsIgnoreCase("S")) {
         Room room = selectRoom.execute(accommodation);
         rooms.add(room);
       }
 
-      response = validator.readString("¿Deseas seleccionar más habitaciones? (S/N): ");
+      response = validator.readString("\n¿Deseas seleccionar más habitaciones? (S/N): ");
     } while (response.equalsIgnoreCase("S"));
 
     return rooms;
